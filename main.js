@@ -1,31 +1,47 @@
 let size = 16;
+let arg = 'black';
 
 
-let container = document.querySelector('.container');
-let grid = document.createElement('div');
-container.appendChild(grid);
-grid.classList.add('grid');
-grid.style.display = 'grid';
-grid.style.width = '100%';
-// grid.textContent = 'asd';
-grid.style.border = '1px red solid';
+let checkbox = document.getElementById("change");
+// alert(checkbox.value);
+checkbox.onclick = function() {
+    if(this.checked != true) arg = 'black';
+    else arg = 'color';
+}
 
-grid.style.justifySelf = 'center';
-// grid.style.alignContent = 'center';
-// grid.style.alignItems = 'center';
-// grid.style.justifyContent = 'center';
-// grid.style.justifyItems = 'center';
-grid.style.gap = '0px';
+let slider = document.getElementById("myRange");
+let output = document.querySelector('.out');
+output.innerHTML = slider.value;
 
+slider.oninput = function() {
+    output.innerHTML = this.value;
+    // size = this.value;
+    clear();
+    buildBoard(this.value);
+}
+
+
+
+
+function clear() {
+    let cell = document.querySelectorAll('.cell');
+    cell.forEach(x => x.remove());
+}
+
+
+function buildBoard(size) {
+    let grid = document.querySelector('.grid');
 grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 grid.style.gridTemplateRows= `repeat(${size}, 1fr)`;
-
-let test = 10;
 for( let i=0; i<size; i++ )
 {
     for(let j=0; j<size; j++)
     {
         let square = document.createElement('div');
+            square.classList.add("cell");
+            square.addEventListener('mouseover', hoverfunc);
+        grid.appendChild(square);
+
         // square.style.gridColumn = `${j} / ${j}+1`;
         // square.style.gridRow = `${i} / ${i}+1`;
 
@@ -40,13 +56,47 @@ for( let i=0; i<size; i++ )
         // grid-column-end: 3;
         // square.textContent = ' ';
         // square.textContent = `${i},${j}`;
-        square.style.minHeight = '10px';
-        square.style.minWidth = '10px';
+        
         // square.style.maxHeight = '10px';
         // square.style.maxWidth = '10px';
-        square.style.backgroundColor = 'lightgray';
-        square.style.border = '1px green solid';
+        
         // square.style.width = `${test}px`;
-        grid.appendChild(square);
     }
 }
+}
+
+buildBoard(size);
+
+function hoverfunc(e) {
+if (arg == 'black') {
+    console.log(this.style.backgroundColor.red);
+    // this.classList.add("black");
+    
+    this.style.backgroundColor = 'rgb(155,155,155)';
+}
+if (arg == 'white') {
+    console.log("white");
+    this.style.backgroundColor = 'white';
+
+}
+
+if (arg == 'color') {
+    // let clr = RandomSource();
+    // console.log(clr);
+    let red = Math.random()*255;
+    let green = Math.random()*255;
+    let blue = Math.random()*255;
+    console.log(red);
+
+    this.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    // this.classList.add("color");
+}
+// console.log("hovhovhov2");
+
+}
+
+
+
+// let cell = document.querySelectorAll('.cell');
+// cell.forEach(x => x.addEventListener('mouseover', hoverfunc));
+// cell.forEach( x => x.style.background = 'red');
