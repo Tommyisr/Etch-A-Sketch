@@ -33,11 +33,17 @@ main html {
 }
 .erase {
 /* grid-area: 'erase'; */
+display: flex;
+flex-direction: column;
+align-items: center;
+
 }
 .color-change {
 /* grid-area: 'color'; */
 display: flex;
 flex-direction: column;
+align-items: center;
+
 }
 .size {
 

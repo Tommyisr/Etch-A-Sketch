@@ -5,9 +5,20 @@ let arg = 'black';
 let checkbox = document.getElementById("change");
 // alert(checkbox.value);
 checkbox.onclick = function() {
-    if(this.checked != true) arg = 'black';
-    else arg = 'color';
+    if(this.checked != true && checkboxerase.checked == false) arg = 'black';
+    else if(this.checked == true && checkboxerase.checked == false )arg = 'color';
 }
+
+
+let checkboxerase = document.getElementById("erase");
+checkboxerase.onclick = function() {
+    if(this.checked == true) arg = 'white';
+    else if(this.checked == false) {
+    if (checkbox.checked == true) arg = 'color';
+    if (checkbox.checked == false) arg = 'black';
+    }
+}
+
 
 let slider = document.getElementById("myRange");
 let output = document.querySelector('.out');
