@@ -82,7 +82,7 @@ align-items: center;
 .cell {
     /* min-height : 10px; */
     /* min-width : 10px; */
-    background-color : lightgray;
+    background-color : white;
      border : 1px green solid;
      box-sizing: border-box;
 }

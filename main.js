@@ -83,7 +83,7 @@ if (arg == 'black') {
     console.log(this.style.backgroundColor.red);
     // this.classList.add("black");
     
-    this.style.backgroundColor = 'rgb(155,155,155)';
+    this.style.backgroundColor = 'rgb(150,150,150)';
 }
 if (arg == 'white') {
     console.log("white");
